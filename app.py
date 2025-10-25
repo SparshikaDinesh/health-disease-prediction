@@ -1,25 +1,30 @@
-
 import streamlit as st
 import joblib
 import numpy as np
 import pandas as pd
+import gdown
 
+# Download model from Google Drive
+url = "https://drive.google.com/uc?id=1qeA73w0m9wzx8FaJIivf54ikKML32O_M"
+gdown.download(url, "best_model_rf.joblib", quiet=False)
 
-st.title("Diabetes Risk Predictor (Demo)")
-
+# Load model and scaler
 model = joblib.load('best_model_rf.joblib')
 scaler = joblib.load('scaler.joblib')
 
-st.write("Enter values for the features:")
+st.title("🩺 Diabetes Risk Predictor (Demo)")
+st.write("This app predicts the probability of diabetes based on key health indicators.")
 
-# Create inputs dynamically (simple number_input for all)
+# Collect user inputs
+st.header("Enter your health details")
+
 inputs = []
-for feat in ['HighBP', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'Stroke', 'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 'HvyAlcoholConsump', 'AnyHealthcare', 'NoDocbcCost', 'GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Sex', 'Age', 'Education', 'Income']:
-    val = st.number_input(feat, value=0.0)
-    inputs.append(val)
+features = [
+    'HighBP', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'Stroke',
+    'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies',
+    'HvyAlcoholConsump', 'AnyHealthcare', 'NoDocbcCost', 'GenHlth',
+    'MentHlth', 'PhysHlth', 'DiffWalk', 'Sex', 'Age', 'Education', 'Income'
+]
 
-if st.button("Predict"):
-    x = np.array([inputs]).astype(float)
-    x_scaled = scaler.transform(x)
-    prob = model.predict_proba(x_scaled)[0,1]
-    st.write(f"Predicted probability of diabetes: {prob:.3f}")
+for feat in features:
+    val = st.number_in_
