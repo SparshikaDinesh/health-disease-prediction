@@ -13,6 +13,12 @@ Health prediction project using **machine learning** — predicts **diabetes ris
 - Used SHAP for model explainability (to understand feature importance)  
 - Deployed a simple Streamlit app for interactive predictions  
 
+
+## 🌐 Live App
+
+You can try the live version of this project here:  
+👉 [**Diabetes Risk Prediction App**](https://sparshikadinesh-health-disease-prediction.streamlit.app/)
+
 ---
 
 ## 🧠 Key Insights
