@@ -4,6 +4,7 @@ import joblib
 import numpy as np
 import pandas as pd
 
+
 st.title("Diabetes Risk Predictor (Demo)")
 
 model = joblib.load('best_model_rf.joblib')
